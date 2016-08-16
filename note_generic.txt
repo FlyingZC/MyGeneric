@@ -1,0 +1,41 @@
+160810
+泛型与反射结合
+1.
+E — Element，常用在java Collection里，如：List<E>,Iterator<E>,Set<E>
+K,V — Key，Value，代表Map的键值对
+N — Number，数字
+T — Type，类型，如String，Integer等等
+
+2.泛型接口
+com.zc.generic.interf
+实现泛型接口
+public interface Info<T>{}
+
+实现
+方式一
+public class InfoImpl implements Info<String>{}
+//方式二:使用 泛型类 实现 泛型接口
+public class InfoImpl2<T> implements Info<T> {}
+//方式二中:可采用多个泛型参数
+public class InfoImpl3<T,U> implements Info<T>{}
+
+3.泛型静态方法的调用
+com.zc.generic.z02
+StaticFan.java
+
+StaticFan.<Integer>staticMethod(1);
+
+4.泛型与可变个数形参
+T04Arr
+
+5.泛型 类型绑定：extends
+<T extends Comparable> 可以继承类或接口
+表示该范围是后者的子类型
+
+
+
+ 
+
+
+
+
