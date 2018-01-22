@@ -1,0 +1,49 @@
+161212
+一.
+ArrayList<String> list=new ArrayList<String>();
+其中<String>为类型参数(type parameters)
+
+二.通配符类型
+若要使用泛型,却不确定实际类型参数,使用无限制通配符类型(unbounded wildcard type)
+Set<?>:某个类型的集合
+三.泛型擦除
+无论何时定义一个泛型类型,都自动提供一个相应的原始类型(raw type).
+原始类型的名字就是删去类型参数后的泛型类型名.擦除(erased)类型变量,并替换为限定类型(没有 限定的变量用Object)
+List<? extends E>,List<? super E>擦除后类型为List<E>
+(1)如 Pair<T>
+public class Pair<T>{
+	public Pair(T first){}
+}
+
+对应的原始类型如下
+public class Pair{
+	public Pair(Object first){
+	
+	}
+}
+
+(2)用第一个限定类型替换T,后面转换为要实现的接口类型
+List<T extends Serializable & Cloneable>擦除后为List<Serializable>
+
+public class Pair<T extends Comparable & Serializable>{
+	public Pair(T first){
+	}
+}
+
+对应的原始类型如下
+public class Pair implements Serializable{
+	public Pair(Comparable first){}
+}
+
+四.泛型参数不能使用基本数据类型,因为擦除后,泛型被替换成Object(或其他限定类型)均为引用类型
+,不能表示基本数据类型
+Java中泛型只存在源码中,在编译后的字节码文件中,就已经被替换为原来的原生类型(raw type)
+并在相应地方插入了强制转型的代码.因此,对于运行期,ArrayList<Integer>和
+ArrayList<String>是同一个类
+
+Class类本身是泛型。例如， String.class是一个Class<String>的实例
+（事实上，它是惟一的实例）。
+
+
+
+
